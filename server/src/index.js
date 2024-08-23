@@ -22,10 +22,10 @@ app.use(cookieParser()); // allows us to parse incoming cookies
 app.use("/api/auth", authRoutes);
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+	app.use(express.static(path.join(__dirname, "/client/dist")));
 
 	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+		res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
 	});
 }
 
