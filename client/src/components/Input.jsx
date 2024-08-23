@@ -1,4 +1,4 @@
-// eslint-disable-next-line react/prop-types
+
 const Input = ({ icon: Icon, ...props }) => {
 	return (
 		<div className='relative mb-6'>

@@ -1,9 +1,7 @@
 import { Check, X } from "lucide-react";
 
-// eslint-disable-next-line react/prop-types
 const PasswordCriteria = ({ password }) => {
 	const criteria = [
-		// eslint-disable-next-line react/prop-types
 		{ label: "At least 6 characters", met: password.length >= 6 },
 		{ label: "Contains uppercase letter", met: /[A-Z]/.test(password) },
 		{ label: "Contains lowercase letter", met: /[a-z]/.test(password) },
@@ -27,7 +25,7 @@ const PasswordCriteria = ({ password }) => {
 	);
 };
 
-// eslint-disable-next-line react/prop-types
+
 const PasswordStrengthMeter = ({ password }) => {
 	const getStrength = (pass) => {
 		let strength = 0;
