@@ -12,7 +12,7 @@ const SignUpPage = () => {
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
 
-	const { signup, error, isLoading } = useAuthStore();
+	const { signup, error, isLoading, isPasswordVisible } = useAuthStore();
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
@@ -54,7 +54,8 @@ const SignUpPage = () => {
 					/>
 					<Input
 						icon={Lock}
-						type='password'
+						type={isPasswordVisible ? "text" : "password"}
+						vissibility={isPasswordVisible}
 						placeholder='Password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}

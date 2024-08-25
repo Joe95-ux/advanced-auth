@@ -12,6 +12,7 @@ export const useAuthStore = create((set) => ({
 	isLoading: false,
 	isCheckingAuth: true,
 	message: null,
+	isPasswordVissible: false,
 
 	signup: async (email, password, name) => {
 		set({ isLoading: true, error: null });
@@ -95,4 +96,7 @@ export const useAuthStore = create((set) => ({
 			throw error;
 		}
 	},
+	togglePasswordVissible: ()=>{
+		set((state) => ({ isPasswordVissible: !state.isPasswordVissible }))
+	}
 }));
