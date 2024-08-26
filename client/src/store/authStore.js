@@ -12,7 +12,8 @@ export const useAuthStore = create((set) => ({
 	isLoading: false,
 	isCheckingAuth: true,
 	message: null,
-	isPasswordVissible: false,
+	isPasswordVisible: false,
+	setIsPasswordVisible: (value) => set({ isPasswordVisible: value }),
 
 	signup: async (email, password, name) => {
 		set({ isLoading: true, error: null });
@@ -68,6 +69,7 @@ export const useAuthStore = create((set) => ({
 			set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
 		} catch (error) {
 			set({ error: null, isCheckingAuth: false, isAuthenticated: false });
+			console.log(error)
 		}
 	},
 	forgotPassword: async (email) => {
@@ -96,7 +98,7 @@ export const useAuthStore = create((set) => ({
 			throw error;
 		}
 	},
-	togglePasswordVissible: ()=>{
-		set((state) => ({ isPasswordVissible: !state.isPasswordVissible }))
+	togglePasswordVisible: ()=>{
+		set((state) => ({ isPasswordVisible: !state.isPasswordVisible }))
 	}
 }));

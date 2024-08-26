@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Input from "../components/Input";
 import { Loader, Lock, Mail, User } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import { useAuthStore } from "../store/authStore";
@@ -12,7 +12,7 @@ const SignUpPage = () => {
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
 
-	const { signup, error, isLoading, isPasswordVisible } = useAuthStore();
+	const { signup, error, isLoading, isPasswordVisible, setIsPasswordVisible } = useAuthStore();
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
@@ -24,6 +24,9 @@ const SignUpPage = () => {
 			console.log(error);
 		}
 	};
+	useEffect(() => {
+		setIsPasswordVisible(false);
+	}, [setIsPasswordVisible]);
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
