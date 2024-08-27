@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import { useAuthStore } from "../store/authStore";
+import SocialLogins from "../components/SocialLogins";
 
 const SignUpPage = () => {
 	const [name, setName] = useState("");
@@ -79,6 +80,7 @@ const SignUpPage = () => {
 						{isLoading ? <Loader className=' animate-spin mx-auto' size={24} /> : "Sign Up"}
 					</motion.button>
 				</form>
+				<SocialLogins text="or Signup with"/>
 			</div>
 			<div className='px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center'>
 				<p className='text-sm text-gray-400'>
