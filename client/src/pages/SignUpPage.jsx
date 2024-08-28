@@ -65,7 +65,9 @@ const SignUpPage = () => {
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					{error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
-					<PasswordStrengthMeter password={password} />
+
+					{password && <PasswordStrengthMeter password={password} />}
+					
 
 					<motion.button
 						className='mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
@@ -80,7 +82,7 @@ const SignUpPage = () => {
 						{isLoading ? <Loader className=' animate-spin mx-auto' size={24} /> : "Sign Up"}
 					</motion.button>
 				</form>
-				<SocialLogins text="or Signup with"/>
+				<SocialLogins text="or Sign up with"/>
 			</div>
 			<div className='px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center'>
 				<p className='text-sm text-gray-400'>
