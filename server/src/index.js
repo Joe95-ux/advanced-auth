@@ -80,9 +80,22 @@ app.get(
 app.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
-  (req, res) => {
+  async (req, res) => {
     generateTokenAndSetCookie(res, req.user.id);
-    res.redirect("/");
+	try {
+		await sendVerificationEmail(req.user.email, verificationToken);
+		res.status(201).json({
+			success: true,
+			message: "User created successfully",
+			user: {
+				...req.user,
+				password: undefined,
+			},
+		});
+		
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
   }
 );
 
@@ -95,9 +108,22 @@ app.get(
 app.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/" }),
-  (req, res) => {
+  async (req, res) => {
     generateTokenAndSetCookie(res, req.user.id);
-    res.redirect("/");
+	try {
+		await sendVerificationEmail(req.user.email, verificationToken);
+		res.status(201).json({
+			success: true,
+			message: "User created successfully",
+			user: {
+				...req.user,
+				password: undefined,
+			},
+		});
+		
+	} catch (error) {
+		res.status(400).json({ success: false, message: error.message });
+	}
   }
 );
 
