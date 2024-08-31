@@ -43,12 +43,12 @@ const verificationToken = Math.floor(100000 + Math.random() * 900000).toString()
 
 // Routes for Google Auth
 app.get(
-  "/auth/google",
+  "/api/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 app.get(
-  "/auth/google/callback",
+  "/api/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   async (req, res) => {
     // Generate JWT and set cookie
@@ -73,12 +73,12 @@ app.get(
 
 // Routes for Facebook Auth
 app.get(
-  "/auth/facebook",
+  "/api/auth/facebook",
   passport.authenticate("facebook", { scope: ["email"] })
 );
 
 app.get(
-  "/auth/facebook/callback",
+  "/api/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/" }),
   async (req, res) => {
     generateTokenAndSetCookie(res, req.user.id);
@@ -101,12 +101,12 @@ app.get(
 
 // Routes for GitHub Auth
 app.get(
-  "/auth/github",
+  "/api/auth/github",
   passport.authenticate("github", { scope: ["user:email"] })
 );
 
 app.get(
-  "/auth/github/callback",
+  "/api/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/" }),
   async (req, res) => {
     generateTokenAndSetCookie(res, req.user.id);

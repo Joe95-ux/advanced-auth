@@ -62,6 +62,19 @@ export const useAuthStore = create((set) => ({
 			throw error;
 		}
 	},
+
+	// Social Login Methods
+	loginWithGoogle: () => {
+		window.location.href = `${API_URL}/google`; // Redirect to Google auth route
+	},
+
+	loginWithFacebook: () => {
+		window.location.href = `${API_URL}/facebook`; // Redirect to Facebook auth route
+	},
+
+	loginWithGithub: () => {
+		window.location.href = `${API_URL}/github`; // Redirect to GitHub auth route
+	},
 	checkAuth: async () => {
 		set({ isCheckingAuth: true, error: null });
 		try {
