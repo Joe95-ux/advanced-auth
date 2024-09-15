@@ -68,12 +68,60 @@ export const useAuthStore = create((set) => ({
 		window.location.href = `${API_URL}/google`; // Redirect to Google auth route
 	},
 
+	loginWithGoogleCallback: async () => {
+		set({ isLoading: true, error: null });
+		try {
+			const response = await axios.get(`${API_URL}/google/callback`);
+			set({
+				isAuthenticated: true,
+				user: response.data.user,
+				error: null,
+				isLoading: false,
+			});
+		} catch (error) {
+			set({ error: error.response?.data?.message || "Error authenticating. Please try again", isLoading: false });
+			throw error;
+		}
+	},
+
 	loginWithFacebook: () => {
 		window.location.href = `${API_URL}/facebook`; // Redirect to Facebook auth route
 	},
 
+	loginWithFacebookCallback: async () => {
+		set({ isLoading: true, error: null });
+		try {
+			const response = await axios.get(`${API_URL}/facebook/callback`);
+			set({
+				isAuthenticated: true,
+				user: response.data.user,
+				error: null,
+				isLoading: false,
+			});
+		} catch (error) {
+			set({ error: error.response?.data?.message || "Error authenticating. Please try again", isLoading: false });
+			throw error;
+		}
+	},
+
 	loginWithGithub: () => {
 		window.location.href = `${API_URL}/github`; // Redirect to GitHub auth route
+	},
+
+	loginWithGithubCallback: async () => {
+		set({ isLoading: true, error: null });
+		try {
+			const response = await axios.get(`${API_URL}/github/callback`);
+			set({
+				isAuthenticated: true,
+				user: response.data.user,
+				error: null,
+				isLoading: false,
+			});
+		} catch (error) {
+			set({ error: error.response?.data?.message || "Error authenticating. Please try again", isLoading: false });
+			throw error;
+		}
 	},
 	checkAuth: async () => {
 		set({ isCheckingAuth: true, error: null });

@@ -7,6 +7,10 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		strategy:{
+			type: String,
+			default: "local"
+		},
 		password: {
 			type: String,
 			required: true,
